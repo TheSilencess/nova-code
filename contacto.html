@@ -22,7 +22,7 @@
     <div id="formulario">
         <h1>¡Contáctanos!</h1>
         <div id="formdata">
-            <form action="#">
+            <form action="#" id="formContacto">
                 <div class="input-group">
                     <label for="nombre">Nombre Completo</label>
                     <input type="text" id="nombre" placeholder="Escribe tu nombre..." required>
@@ -55,5 +55,28 @@
     <footer id="footer">
         &copy; 2026 NovaCode - Todos los derechos reservados.
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <script>
+    emailjs.init("SmBIInoTurquNZzyj");
+
+    document.getElementById("formContacto").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        emailjs.send("service_l7x311n", "template_ntl8u68", {
+            nombre: document.getElementById("nombre").value,
+            email: document.getElementById("email").value,
+            asunto: document.getElementById("asunto").value,
+            mensaje: document.getElementById("mensaje").value
+        })
+        .then(function() {
+            alert("Mensaje enviado 😎");
+        }, function(error) {
+            alert("Error 😓");
+            console.log(error);
+        });
+    });
+</script>
 </body>
 </html>
